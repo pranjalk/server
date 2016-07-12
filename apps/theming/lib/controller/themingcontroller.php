@@ -214,6 +214,14 @@ class ThemingController extends Controller {
 				'#body-user #header,#body-settings #header,#body-public #header {background-color: %s}',
 				$color
 			);
+			$responseCss .= sprintf('
+				input[type="checkbox"].checkbox:checked + label:before {
+					background-image:url(/core/img/actions/checkmark-white.svg);
+					background-color: %s; background-position: center center; background-size:contain;
+					width:12px; height:12px; padding:0; margin:1px 6px 7px 2px;
+        		}',
+				$color
+			);
 		}
 		$logo = $this->config->getAppValue($this->appName, 'logoMime');
 		if($logo !== '') {
