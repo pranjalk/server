@@ -209,6 +209,7 @@ class ThemingController extends Controller {
 		$cacheBusterValue = $this->config->getAppValue('theming', 'cachebuster', '0');
 		$responseCss = '';
 		$color = $this->config->getAppValue($this->appName, 'color');
+		$elementColor = Util::elementColor($color);
 		if($color !== '') {
 			$responseCss .= sprintf(
 				'#body-user #header,#body-settings #header,#body-public #header {background-color: %s}',
@@ -216,11 +217,11 @@ class ThemingController extends Controller {
 			);
 			$responseCss .= sprintf('
 				input[type="checkbox"].checkbox:checked + label:before {
-					background-image:url(/core/img/actions/checkmark-white.svg);
+					background-image:url(\'' . \OC::$WEBROOT . '/core/img/actions/checkmark-white.svg\');
 					background-color: %s; background-position: center center; background-size:contain;
 					width:12px; height:12px; padding:0; margin:1px 6px 7px 2px;
         		}',
-				$color
+				$elementColor
 			);
 		}
 		$logo = $this->config->getAppValue($this->appName, 'logoMime');
