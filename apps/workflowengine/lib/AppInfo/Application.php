@@ -38,44 +38,47 @@ class Application extends \OCP\AppFramework\App {
 		$this->getContainer()->getServer()->getEventDispatcher()->addListener(
 			'OCP\WorkflowEngine\RegisterCheckEvent',
 			function(RegisterCheckEvent $event) {
+				/** @var \OCP\IL10N $l */
+				$l = $this->getContainer()->query('OCP\IL10N');
+
 				$event->addCheck(
 					'OCA\FilesWorkflowEngine\Check\FileMimeType',
-					'File mimetype',
+					$l->t('File mimetype'),
 					['is', '!is', 'matches', '!matches']
 				);
 				$event->addCheck(
 					'OCA\FilesWorkflowEngine\Check\FileSize',
-					'File size',
+					$l->t('File size'),
 					['less', '!less', 'greater', '!greater']
 				);
 				$event->addCheck(
 					'OCA\FilesWorkflowEngine\Check\FileSystemTags',
-					'File system tags',
+					$l->t('File system tags'),
 					['is', '!is']
 				);
 				$event->addCheck(
 					'OCA\FilesWorkflowEngine\Check\RequestRemoteAddress',
-					'Request IP address',
+					$l->t('Request IP address'),
 					['matchesIPv4', '!matchesIPv4', 'matchesIPv6', '!matchesIPv6']
 				);
 				$event->addCheck(
 					'OCA\FilesWorkflowEngine\Check\RequestTime',
-					'Request time',
+					$l->t('Request time'),
 					['in', '!in']
 				);
 				$event->addCheck(
 					'OCA\FilesWorkflowEngine\Check\RequestURL',
-					'Request URL',
+					$l->t('Request URL'),
 					['is', '!is', 'matches', '!matches']
 				);
 				$event->addCheck(
 					'OCA\FilesWorkflowEngine\Check\RequestUserAgent',
-					'Request User Agent',
+					$l->t('Request User Agent'),
 					['is', '!is', 'matches', '!matches']
 				);
 				$event->addCheck(
 					'OCA\FilesWorkflowEngine\Check\UserGroupMembership',
-					'User group membership',
+					$l->t('User group membership'),
 					['is', '!is']
 				);
 			},
